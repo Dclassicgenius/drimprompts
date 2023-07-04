@@ -1,6 +1,5 @@
 import { connectToDB } from "@utils/database";
 import Prompt from "@models/prompt";
-import { NextApiRequest } from "next";
 import { NextRequest } from "next/server";
 
 export const GET = async (request: NextRequest, { params }: any) => {
@@ -17,13 +16,30 @@ export const GET = async (request: NextRequest, { params }: any) => {
   }
 };
 
-export const PATCH = async (request: NextApiRequest, { params }: any) => {
+export const PATCH = async (request: NextRequest, { params }: any) => {
+  //   const chunks = [];
+  //   for await (let chunk of request.body) {
+  //     chunks.push(chunk);
+  //   }
+
+  //   const body = Buffer.concat(chunks).toString();
+
+  if (!request.body) {
+    return new Response("Empty request body", { status: 400 });
+  }
+
   const chunks = [];
-  for await (let chunk of request.body) {
-    chunks.push(chunk);
+  const reader = request.body.getReader();
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) {
+      break;
+    }
+    chunks.push(value);
   }
 
   const body = Buffer.concat(chunks).toString();
+
   const { prompt, tag } = JSON.parse(body);
 
   try {
