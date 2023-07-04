@@ -11,16 +11,10 @@ interface FormProps {
   post: Post;
   setPost: (post: Post) => void;
   submitting: boolean;
-  handlleSubmit: (e: FormEvent) => void;
+  handleSubmit: (e: FormEvent) => void;
 }
 
-const Form = ({
-  type,
-  post,
-  setPost,
-  submitting,
-  handlleSubmit,
-}: FormProps) => {
+const Form = ({ type, post, setPost, submitting, handleSubmit }: FormProps) => {
   return (
     <section className="w-full max-w-full flex-start flex-col">
       <h1 className="head_text text-left">
@@ -32,7 +26,7 @@ const Form = ({
       </p>
 
       <form
-        onSubmit={handlleSubmit}
+        onSubmit={handleSubmit}
         className="mt-10 w-full max-w-2xl flex flex-col gap-7 glassmorphism"
       >
         <label>
