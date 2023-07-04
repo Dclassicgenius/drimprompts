@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React, { FormEvent } from "react";
 
-interface Post {
+export interface Post {
   prompt: string;
   tag: string;
 }
