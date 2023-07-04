@@ -1,8 +1,9 @@
 import { connectToDB } from "@utils/database";
 import Prompt from "@models/prompt";
 import { NextApiRequest } from "next";
+import { NextRequest } from "next/server";
 
-export const GET = async (request: NextApiRequest, { params }: any) => {
+export const GET = async (request: NextRequest, { params }: any) => {
   try {
     await connectToDB();
 
@@ -42,7 +43,7 @@ export const PATCH = async (request: NextApiRequest, { params }: any) => {
   }
 };
 
-export const DELETE = async (request: NextApiRequest, { params }: any) => {
+export const DELETE = async (request: NextRequest, { params }: any) => {
   await connectToDB();
 
   try {
