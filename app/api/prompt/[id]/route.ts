@@ -17,13 +17,6 @@ export const GET = async (request: NextRequest, { params }: any) => {
 };
 
 export const PATCH = async (request: NextRequest, { params }: any) => {
-  //   const chunks = [];
-  //   for await (let chunk of request.body) {
-  //     chunks.push(chunk);
-  //   }
-
-  //   const body = Buffer.concat(chunks).toString();
-
   if (!request.body) {
     return new Response("Empty request body", { status: 400 });
   }
